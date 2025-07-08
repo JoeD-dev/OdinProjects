@@ -27,6 +27,8 @@ body {
     font-size: var(--description-font-size);
     font-family: var(--font-family-main);
 }
+
+/* HEADER STYLING*/
 .header {
     display: flex;
     justify-content: space-between;
@@ -59,10 +61,99 @@ body {
         flex-direction: column;
         justify-content: center;
     }
+    .navigation {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .nav-list {
+        justify-content: space-between;
+    }
 }
 
 @media (max-width: 576px) {
     .nav-list {
         flex-direction: column;
+    }
+}
+
+/*MAIN CONTENT STYLING*/
+.vis-hid {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 0;
+}
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    padding-inline: 10%;
+    padding-bottom: 80px;
+}
+.hero-content {
+    flex: 1 1 450px;
+    margin-right: auto;
+}
+.hero-heading {
+    font-size: var(--hero-header-font-size);
+    margin-bottom: 25px;
+}
+.hero-text {
+    color: var(--color-gray);
+    margin-bottom: 15px;
+}
+.cta {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    border-radius: 5px;
+    border: none;
+    padding: 5px 25px;
+}
+.cta:hover {
+    transition-duration: var(--transition-duration);
+    transform: scale(1.1);
+}
+.hero-img {
+    flex: 1 0 400px;
+    aspect-ratio: 2/1;
+    margin-left: 15px;
+}
+
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column;
+    }
+    .hero-content {
+        flex: 0 0 auto;
+        margin-bottom: 50px;width: 60%;
+    }
+    .hero-heading {
+        
+        margin-top: 100px;
+    }
+    .hero-img {
+        aspect-ratio: 2/1;
+        flex: 1 0 auto;
+        min-width: 450px;
+        width: 90%;
+        margin-left: 0;
+    }
+}
+@media (max-width: 768px) {
+    :root {
+        --hero-header-font-size: 4rem;
+    }
+    .hero-content {
+        width: 100%;
+    }
+}
+@media (max-width: 576px) {
+    .hero-img {
+        min-width: 100%;
     }
 }

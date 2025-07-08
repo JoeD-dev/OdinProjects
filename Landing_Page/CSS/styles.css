@@ -85,6 +85,11 @@ body {
 
 /*MAIN CONTENT STYLING*/
 
+.main {
+    background-color: var(--color-white);
+    color: var(--color-dark);
+}
+
 /*HERO SECTION STYLING*/
 .vis-hid {
     width: 1px;
@@ -111,6 +116,7 @@ body {
 }
 .hero-heading {
     font-size: var(--hero-header-font-size);
+    font-weight: 900;
     margin-bottom: 25px;
 }
 .hero-text {
@@ -211,6 +217,33 @@ body {
 @media (max-width: 1024px) {
     .info-content {
         flex-wrap: wrap;
+    }
+}
+
+
+/*BLOCKQUOTE STYLING*/
+
+blockquote {
+    background-color: var(--color-gray);
+    padding: 10% 20%;
+}
+.cite {
+    font-size: var(--section-large-font-size);
+    font-style: italic;
+    font-weight: lighter;
+    text-align: justify;
+}
+.author {
+    font-style: normal;
+    font-weight: 700;
+    text-align: right;
+    display: block;
+    margin-top: 30px;
+}
+
+@media (max-width: 1024px) {
+    .cite {
+        font-size: 3rem;
     }
 }
 

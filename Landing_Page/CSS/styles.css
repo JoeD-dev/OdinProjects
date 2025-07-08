@@ -126,9 +126,9 @@ body {
 .cta {
     background-color: var(--color-blue);
     color: var(--color-white);
-    border-radius: 5px;
+    border-radius: 8px;
     border: none;
-    padding: 5px 25px;
+    padding: 8px 32px;
 }
 .cta:hover {
     transition-duration: var(--transition-duration);
@@ -247,3 +247,57 @@ blockquote {
     }
 }
 
+
+/*CALL TO ACTION STYLING*/
+
+.cta-section {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    padding: 5% 8%;
+    margin: 5% 10%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cta-header {
+    margin-bottom: 12px;
+}
+.second {
+border: 2px solid var(--color-white);
+flex-shrink: 0;
+}
+
+@media(max-width: 768px) {
+    .cta-section {
+        flex-direction: column;
+        align-items: center;
+    }
+    .cta-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .cta-desc {
+        text-align: center;
+    }
+    .second {
+        margin-top: 30px;
+    }
+}
+
+
+/*FOOTER STYLING*/
+.footer {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 10%;
+}
+.copyright {
+    text-align: center;
+}

@@ -1,6 +1,6 @@
 const container = document.createElement('div');
 const params = document.createElement('div');
-
+    
 let gridLenght = 16;
 let gridSize = gridLenght ** 2;
 let counter = 0;
@@ -19,8 +19,22 @@ document.body.appendChild(container);
 
 while(counter < gridSize) {
     const innerDiv = document.createElement('div');
-    innerDiv.style.cssText = 'border: 1px solid black; flex-grow:1; box-sizing: border-box;' ;
+    innerDiv.style.cssText = 'flex-grow:1; box-sizing: border-box; opacity: 0;';
     innerDiv.style.flexBasis = flexBasis();
+    innerDiv.classList.add('hover-div')
     container.appendChild(innerDiv);
     counter++;
 };
+
+const hoverDiv = document.querySelectorAll('.hover-div');
+document.addEventListener('DOMContentLoaded', () => {
+    hoverDiv.forEach(element => {
+        element.addEventListener('mouseenter', () =>{
+            element.style.backgroundColor = 'wheat';
+            let currentOpacity = parseFloat(element.style.opacity) || 0;
+            let newOpacity = Math.min(currentOpacity + 0.1, 1);
+            element.style.opacity = newOpacity.toString();
+        });
+    });
+});
+

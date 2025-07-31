@@ -1,0 +1,84 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.calculator{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 600px;
+    background-color: #d0d1ce;
+    border-radius: 20px;
+    padding: 20px;
+    padding-top: 50px;
+    gap: 50px
+}
+.screen {
+    width: 100%;
+    height: 100px;
+    background-color: #dde9e9;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.screen div {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 500;
+    color: #1e2f33;
+}
+.operation-screen {
+    height: 40%;
+    font-size: 26px;
+    text-align: right;
+}
+.sum-screen{
+    height: 60%;
+    font-size: 36px;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+}
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.buttons button {
+    width: 20%;
+    aspect-ratio: 1/1;
+    border: none;
+    border-radius: 40%;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 800;
+}
+.buttons .erase {
+    width: 45%;
+    aspect-ratio: 3/1;
+    border-radius: 25px;
+}
+.digits {
+    background-color: #6d878c;
+}
+.special {
+    background-color: #1e2f33;
+}
+.operations {
+    background-color: #b85d29;
+}
+
+.digits:hover {
+    background-color: #435b5f;
+}
+.special:hover {
+    background-color: #6d797b;
+}
+.operations:hover {
+    background-color: #f8803a;
+}

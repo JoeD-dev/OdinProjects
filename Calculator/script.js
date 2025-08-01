@@ -14,12 +14,13 @@ const button0 = document.querySelector('#button-0');
 const buttonEraseAll = document.querySelector('#erase-all');
 const buttonEraseOne = document.querySelector('#erase-one');
 const buttonPoint = document.querySelector('#button-point');
-const buttonSum = document.querySelector('#button-sum');
+const buttonEqual = document.querySelector('#button-sum');
 const buttonAdd = document.querySelector('#button-add');
 const buttonSubstract = document.querySelector('#button-substract');
 const buttonMultiply = document.querySelector('#button-multiply');
 const buttonDivide = document.querySelector('#button-divide');
 let conditionArray = ['+', '-', 'x', '/', '.'];
+let operatorsArray = ['+', '-', 'x', '/' ];
 
 document.addEventListener('DOMContentLoaded', () => {
     button1.addEventListener('click', () => {
@@ -54,7 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function operationFunc(operator) {
-        if(conditionArray.every(item => operationScreen.textContent.at(-1) !== item)) {
+        if(conditionArray.every(item => operationScreen.textContent.at(-1) !== item) 
+            && operationScreen.textContent !== '') {
             operationScreen.textContent += operator;
         }else if(conditionArray.some(item => operationScreen.textContent.at(-1) === item) 
             && conditionArray.every(item => operationScreen.textContent.at(-2) !== item))  {
@@ -62,9 +64,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
      function getSum (operator) {
-        operatorIndex = operationScreen.textContent.indexOf(operator);
-        let num1 = operationScreen.textContent.slice(0,operatorIndex);
-        let num2 = operationScreen.textContent.slice(operatorIndex + 1);
+        let operatorIndex = operationScreen.textContent.indexOf(operator, 1);
+        let num1 = +operationScreen.textContent.slice(0,operatorIndex);
+        let num2 = +operationScreen.textContent.slice(operatorIndex + 1);
+        console.log(num1);
+        console.log(num2);
+        console.log(operator);
+        let sum;
+        if (operator === '+') sum = num1 + num2;
+        else if (operator === '-') sum = num1 + (-num2);
+        else if (operator === 'x') sum = num1 * num2;
+        else if (operator === '/') sum = num1 / num2;
+
+
+        console.log(operator);
+        sumScreen.textContent = `=${sum}`;
      }
 
 
@@ -107,15 +121,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    buttonSum.addEventListener('click',() => {
+    buttonEqual.addEventListener('click',() => {
+        let operator = 0; 
+        operatorsArray.forEach(element => {
+            if(operationScreen.textContent.indexOf(element, 1) !== -1 ) {
+               operator = element;
+            }
+        });
+        getSum(operator);
+        operationScreen.textContent = '';
     })
 
 
     buttonEraseAll.addEventListener('click', () => {
         operationScreen.textContent = '';
+        sumScreen.textContent = '';
     });
     buttonEraseOne.addEventListener('click', () => {
         operationScreen.textContent = operationScreen.textContent.slice(0, -1);
+        sumScreen.textContent = '';
     });
 
 })

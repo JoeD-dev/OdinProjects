@@ -19,6 +19,7 @@ const buttonAdd = document.querySelector('#button-add');
 const buttonSubstract = document.querySelector('#button-substract');
 const buttonMultiply = document.querySelector('#button-multiply');
 const buttonDivide = document.querySelector('#button-divide');
+let conditionArray = ['+', '-', 'x', '/', '.', ''];
 
 document.addEventListener('DOMContentLoaded', () => {
     button1.addEventListener('click', () => {
@@ -52,44 +53,25 @@ document.addEventListener('DOMContentLoaded', () => {
         operationScreen.textContent += '0';
     });
 
+    function operationFunc(operator) {
+        if(conditionArray.every(item => operationScreen.textContent.at(-1) !== item)) {
+            operationScreen.textContent += operator;
+        }else if(conditionArray.some(item => operationScreen.textContent.at(-1) === item) 
+            && conditionArray.every(item => operationScreen.textContent.at(-2) !== item))  {
+            operationScreen.textContent = operationScreen.textContent.slice(0,-1) + operator;
+        }
+    }
+
 
     buttonAdd.addEventListener('click', () => {
-        if(operationScreen.textContent.at(-1) !== '+' 
-        && operationScreen.textContent.at(-1) !== '-'
-        && operationScreen.textContent.at(-1) !== 'x'
-        && operationScreen.textContent.at(-1) !== '/'
-        && operationScreen.textContent !== '') {
-
-            operationScreen.textContent += '+';
-        }else if(operationScreen.textContent.at(-1) === '+' 
-            && operationScreen.textContent.at(-2) !== '+' 
-            && operationScreen.textContent.at(-2) !== '-'
-            && operationScreen.textContent.at(-2) !== 'x'
-            && operationScreen.textContent.at(-2) !== '/'
-        || operationScreen.textContent.at(-1) === '-' && operationScreen.textContent !== '-'
-            && operationScreen.textContent.at(-2) !== '+' 
-            && operationScreen.textContent.at(-2) !== '-'
-            && operationScreen.textContent.at(-2) !== 'x'
-            && operationScreen.textContent.at(-2) !== '/'
-        || operationScreen.textContent.at(-1) === 'x'
-            && operationScreen.textContent.at(-2) !== '+' 
-            && operationScreen.textContent.at(-2) !== '-'
-            && operationScreen.textContent.at(-2) !== 'x'
-            && operationScreen.textContent.at(-2) !== '/'
-        || operationScreen.textContent.at(-1) === '/'
-            && operationScreen.textContent.at(-2) !== '+' 
-            && operationScreen.textContent.at(-2) !== '-'
-            && operationScreen.textContent.at(-2) !== 'x'
-            && operationScreen.textContent.at(-2) !== '/') {
-
-            operationScreen.textContent = operationScreen.textContent.slice(0,-1) + '+';
-        };
+        operationFunc('+');
     });
 
 
     buttonSubstract.addEventListener('click', () => {
         if(operationScreen.textContent.at(-1) !== '+' 
-        && operationScreen.textContent.at(-1) !== '-') {
+        && operationScreen.textContent.at(-1) !== '-'
+        && operationScreen.textContent.at(-1) !== '.') {
 
             operationScreen.textContent += '-';
 
@@ -101,71 +83,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     buttonMultiply.addEventListener('click', () => {
-        if(operationScreen.textContent.at(-1) !== '+' 
-        && operationScreen.textContent.at(-1) !== '-'
-        && operationScreen.textContent.at(-1) !== 'x'
-        && operationScreen.textContent.at(-1) !== '/'
-        && operationScreen.textContent !== '') {
-
-            operationScreen.textContent += 'x';
-        }else if(operationScreen.textContent.at(-1) === '+' 
-            && operationScreen.textContent.at(-2) !== '+' 
-            && operationScreen.textContent.at(-2) !== '-'
-            && operationScreen.textContent.at(-2) !== 'x'
-            && operationScreen.textContent.at(-2) !== '/'
-        || operationScreen.textContent.at(-1) === '-' && operationScreen.textContent !== '-'
-            && operationScreen.textContent.at(-2) !== '+' 
-            && operationScreen.textContent.at(-2) !== '-'
-            && operationScreen.textContent.at(-2) !== 'x'
-            && operationScreen.textContent.at(-2) !== '/'
-        || operationScreen.textContent.at(-1) === 'x'
-            && operationScreen.textContent.at(-2) !== '+' 
-            && operationScreen.textContent.at(-2) !== '-'
-            && operationScreen.textContent.at(-2) !== 'x'
-            && operationScreen.textContent.at(-2) !== '/'
-        || operationScreen.textContent.at(-1) === '/'
-            && operationScreen.textContent.at(-2) !== '+' 
-            && operationScreen.textContent.at(-2) !== '-'
-            && operationScreen.textContent.at(-2) !== 'x'
-            && operationScreen.textContent.at(-2) !== '/') {
-
-            operationScreen.textContent = operationScreen.textContent.slice(0,-1) + 'x';
-        };
+        operationFunc('x');
     });
 
 
     buttonDivide.addEventListener('click', () => {
-        if(operationScreen.textContent.at(-1) !== '+' 
-        && operationScreen.textContent.at(-1) !== '-'
-        && operationScreen.textContent.at(-1) !== 'x'
-        && operationScreen.textContent.at(-1) !== '/'
-        && operationScreen.textContent !== '') {
-
-            operationScreen.textContent += '/';
-        }else if(operationScreen.textContent.at(-1) === '+' 
-            && operationScreen.textContent.at(-2) !== '+' 
-            && operationScreen.textContent.at(-2) !== '-'
-            && operationScreen.textContent.at(-2) !== 'x'
-            && operationScreen.textContent.at(-2) !== '/'
-        || operationScreen.textContent.at(-1) === '-' && operationScreen.textContent !== '-'
-            && operationScreen.textContent.at(-2) !== '+' 
-            && operationScreen.textContent.at(-2) !== '-'
-            && operationScreen.textContent.at(-2) !== 'x'
-            && operationScreen.textContent.at(-2) !== '/'
-        || operationScreen.textContent.at(-1) === 'x'
-            && operationScreen.textContent.at(-2) !== '+' 
-            && operationScreen.textContent.at(-2) !== '-'
-            && operationScreen.textContent.at(-2) !== 'x'
-            && operationScreen.textContent.at(-2) !== '/'
-        || operationScreen.textContent.at(-1) === '/'
-            && operationScreen.textContent.at(-2) !== '+' 
-            && operationScreen.textContent.at(-2) !== '-'
-            && operationScreen.textContent.at(-2) !== 'x'
-            && operationScreen.textContent.at(-2) !== '/') {
-
-            operationScreen.textContent = operationScreen.textContent.slice(0,-1) + '/';
-        };
+        operationFunc('/');
     });
+
+
+    buttonPoint.addEventListener('click', () => {
+        if( operationScreen.textContent !== ''
+            && !operationScreen.textContent.includes('.')
+        ||  operationScreen.textContent.lastIndexOf('+') > operationScreen.textContent.lastIndexOf('.')
+            &&operationScreen.textContent.at(-1) !== '+' 
+            && operationScreen.textContent.at(-1) !== '-'
+            && operationScreen.textContent.at(-1) !== 'x'
+            && operationScreen.textContent.at(-1) !== '/'
+            && operationScreen.textContent.at(-1) !== '.'
+        ||  operationScreen.textContent.lastIndexOf('-') > operationScreen.textContent.lastIndexOf('.')
+            &&operationScreen.textContent.at(-1) !== '+' 
+            && operationScreen.textContent.at(-1) !== '-'
+            && operationScreen.textContent.at(-1) !== 'x'
+            && operationScreen.textContent.at(-1) !== '/'
+            && operationScreen.textContent.at(-1) !== '.'
+        ||  operationScreen.textContent.lastIndexOf('x') > operationScreen.textContent.lastIndexOf('.')
+            &&operationScreen.textContent.at(-1) !== '+' 
+            && operationScreen.textContent.at(-1) !== '-'
+            && operationScreen.textContent.at(-1) !== 'x'
+            && operationScreen.textContent.at(-1) !== '/'
+            && operationScreen.textContent.at(-1) !== '.'
+        ||  operationScreen.textContent.lastIndexOf('/') > operationScreen.textContent.lastIndexOf('.')
+            &&operationScreen.textContent.at(-1) !== '+' 
+            && operationScreen.textContent.at(-1) !== '-'
+            && operationScreen.textContent.at(-1) !== 'x'
+            && operationScreen.textContent.at(-1) !== '/'
+            && operationScreen.textContent.at(-1) !== '.') {
+
+            operationScreen.textContent += '.';
+        }
+    });
+
+    buttonSum.addEventListener('click',() => {
+        let oper = operationScreen.textContent.indexOf('+');
+        let num1 = operationScreen.textContent.slice(0,oper);
+        let num2 = operationScreen.textContent.slice(oper + 1);
+        sumScreen.textContent = +num1 + +num2;
+    })
 
 
     buttonEraseAll.addEventListener('click', () => {

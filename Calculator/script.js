@@ -19,7 +19,7 @@ const buttonAdd = document.querySelector('#button-add');
 const buttonSubstract = document.querySelector('#button-substract');
 const buttonMultiply = document.querySelector('#button-multiply');
 const buttonDivide = document.querySelector('#button-divide');
-let conditionArray = ['+', '-', 'x', '/', '.', ''];
+let conditionArray = ['+', '-', 'x', '/', '.'];
 
 document.addEventListener('DOMContentLoaded', () => {
     button1.addEventListener('click', () => {
@@ -61,6 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
             operationScreen.textContent = operationScreen.textContent.slice(0,-1) + operator;
         }
     }
+     function getSum (operator) {
+        operatorIndex = operationScreen.textContent.indexOf(operator);
+        let num1 = operationScreen.textContent.slice(0,operatorIndex);
+        let num2 = operationScreen.textContent.slice(operatorIndex + 1);
+     }
 
 
     buttonAdd.addEventListener('click', () => {
@@ -95,40 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
     buttonPoint.addEventListener('click', () => {
         if( operationScreen.textContent !== ''
             && !operationScreen.textContent.includes('.')
-        ||  operationScreen.textContent.lastIndexOf('+') > operationScreen.textContent.lastIndexOf('.')
-            &&operationScreen.textContent.at(-1) !== '+' 
-            && operationScreen.textContent.at(-1) !== '-'
-            && operationScreen.textContent.at(-1) !== 'x'
-            && operationScreen.textContent.at(-1) !== '/'
-            && operationScreen.textContent.at(-1) !== '.'
-        ||  operationScreen.textContent.lastIndexOf('-') > operationScreen.textContent.lastIndexOf('.')
-            &&operationScreen.textContent.at(-1) !== '+' 
-            && operationScreen.textContent.at(-1) !== '-'
-            && operationScreen.textContent.at(-1) !== 'x'
-            && operationScreen.textContent.at(-1) !== '/'
-            && operationScreen.textContent.at(-1) !== '.'
-        ||  operationScreen.textContent.lastIndexOf('x') > operationScreen.textContent.lastIndexOf('.')
-            &&operationScreen.textContent.at(-1) !== '+' 
-            && operationScreen.textContent.at(-1) !== '-'
-            && operationScreen.textContent.at(-1) !== 'x'
-            && operationScreen.textContent.at(-1) !== '/'
-            && operationScreen.textContent.at(-1) !== '.'
-        ||  operationScreen.textContent.lastIndexOf('/') > operationScreen.textContent.lastIndexOf('.')
-            &&operationScreen.textContent.at(-1) !== '+' 
-            && operationScreen.textContent.at(-1) !== '-'
-            && operationScreen.textContent.at(-1) !== 'x'
-            && operationScreen.textContent.at(-1) !== '/'
-            && operationScreen.textContent.at(-1) !== '.') {
+        ||  conditionArray.some(item => operationScreen.textContent.lastIndexOf(item) > operationScreen.textContent.lastIndexOf('.')) 
+            && conditionArray.every(item => operationScreen.textContent.at(-1) !== item)){
 
             operationScreen.textContent += '.';
         }
     });
 
     buttonSum.addEventListener('click',() => {
-        let oper = operationScreen.textContent.indexOf('+');
-        let num1 = operationScreen.textContent.slice(0,oper);
-        let num2 = operationScreen.textContent.slice(oper + 1);
-        sumScreen.textContent = +num1 + +num2;
     })
 
 

@@ -8,7 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 400px;
+    width: 410px;
     height: 600px;
     background-color: #d0d1ce;
     border-radius: 20px;
@@ -23,11 +23,15 @@ body {
     border-radius: 10px;
     padding: 10px;
     box-sizing: border-box;
+    overflow: hidden;
 }
 .screen div {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 500;
     color: #1e2f33;
+    display: flex;
+    flex-direction:row-reverse;
+    overflow: hidden;
 }
 .operation-screen {
     height: 40%;

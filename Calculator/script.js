@@ -78,10 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (operator === '+') sum = num1 + num2;
         else if (operator === '-') sum = num1 - num2;
         else if (operator === 'x') sum = num1 * num2;
-        else if (operator === '/') sum = num1 / num2;
+        else if (operator === '/'&& num2 !== 0) sum = num1 / num2;
+        else if (operator === '/'&& num2 === 0) sumScreen.textContent = 'can\'t divide by zero';
         sum = sum.toFixed(3);
         sum = sum.split('');
-        while(sum.at(-1) === '0' || sum.at(-1) === '.') {
+        while(sum.length > 1 && sum.at(-1) === '0' || sum.at(-1) === '.') {
             sum.pop();
         }
         sum= sum.join('');

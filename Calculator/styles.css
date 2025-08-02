@@ -36,14 +36,14 @@ body {
 .operation-screen {
     height: 40%;
     font-size: 26px;
-    text-align: right;
+    align-items: end;
+    padding-top: 2px;
 }
 .sum-screen{
     height: 60%;
     font-size: 36px;
     display: flex;
-    align-items: end;
-    justify-content: end;
+    align-items: start;
 }
 .buttons {
     display: flex;

@@ -55,30 +55,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function operationFunc(operator) {
-        if(conditionArray.every(item => operationScreen.textContent.at(-1) !== item) 
+        
+        if( operatorsArray.some(element => operationScreen.textContent.slice(1,-1).includes(element))) {
+            let foundedElement = operatorsArray.find(element => operationScreen.textContent.slice(1,-1).includes(element))
+            getSum(foundedElement);
+            operationScreen.textContent = sumScreen.textContent + operator;
+        } else {
+            if(conditionArray.every(item => operationScreen.textContent.at(-1) !== item) 
             && operationScreen.textContent !== '') {
             operationScreen.textContent += operator;
         }else if(conditionArray.some(item => operationScreen.textContent.at(-1) === item) 
             && conditionArray.every(item => operationScreen.textContent.at(-2) !== item))  {
             operationScreen.textContent = operationScreen.textContent.slice(0,-1) + operator;
         }
+        }
     }
      function getSum (operator) {
         let operatorIndex = operationScreen.textContent.indexOf(operator, 1);
         let num1 = +operationScreen.textContent.slice(0,operatorIndex);
         let num2 = +operationScreen.textContent.slice(operatorIndex + 1);
-        console.log(num1);
-        console.log(num2);
-        console.log(operator);
         let sum;
         if (operator === '+') sum = num1 + num2;
-        else if (operator === '-') sum = num1 + (-num2);
+        else if (operator === '-') sum = num1 - num2;
         else if (operator === 'x') sum = num1 * num2;
         else if (operator === '/') sum = num1 / num2;
-
-
-        console.log(operator);
-        sumScreen.textContent = `=${sum}`;
+        sum = sum.toFixed(3);
+        sum = sum.split('');
+        while(sum.at(-1) === '0' || sum.at(-1) === '.') {
+            sum.pop();
+        }
+        sum= sum.join('');
+        sumScreen.textContent = sum;
      }
 
 
@@ -88,17 +95,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     buttonSubstract.addEventListener('click', () => {
-        if(operationScreen.textContent.at(-1) !== '+' 
-        && operationScreen.textContent.at(-1) !== '-'
-        && operationScreen.textContent.at(-1) !== '.') {
+        if( operatorsArray.some(element => operationScreen.textContent.slice(-2,-1).includes(element))) {
+            let foundedElement = operatorsArray.find(element => operationScreen.textContent.slice(-2,-1).includes(element))
+            getSum(foundedElement);
+            operationScreen.textContent = sumScreen.textContent + '-';
+        } else if(operationScreen.textContent.at(-1) !== '+' 
+                && operationScreen.textContent.at(-1) !== '-'
+                && operationScreen.textContent.at(-1) !== '.') {
 
             operationScreen.textContent += '-';
 
         }else if(operationScreen.textContent.at(-1) === '+' 
-        || operationScreen.textContent.at(-1) === '-') {
+                || operationScreen.textContent.at(-1) === '-') {
 
-            operationScreen.textContent = operationScreen.textContent.slice(0,-1) + '-';
+                 operationScreen.textContent = operationScreen.textContent.slice(0,-1) + '-';
         };
+        
+        
     });
 
     buttonMultiply.addEventListener('click', () => {
@@ -122,14 +135,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     buttonEqual.addEventListener('click',() => {
-        let operator = 0; 
-        operatorsArray.forEach(element => {
-            if(operationScreen.textContent.indexOf(element, 1) !== -1 ) {
-               operator = element;
-            }
-        });
-        getSum(operator);
-        operationScreen.textContent = '';
+        if(sumScreen.textContent !== operationScreen.textContent
+            && operatorsArray.some(element => operationScreen.textContent.includes(element))) {
+            let operator = '+'; 
+            operatorsArray.forEach(element => {
+                if(operationScreen.textContent.indexOf(element, 1) !== -1 ) {
+                   operator = element;
+                }
+            });
+            getSum(operator);
+            operationScreen.textContent = sumScreen.textContent;
+        }
     })
 
 

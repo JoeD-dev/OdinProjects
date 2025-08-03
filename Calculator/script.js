@@ -81,11 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (operator === '/'&& num2 !== 0) sum = num1 / num2;
         else if (operator === '/'&& num2 === 0) sumScreen.textContent = 'can\'t divide by zero';
         sum = sum.toFixed(3);
-        sum = sum.split('');
-        while(sum.length > 1 && sum.at(-1) === '0' || sum.at(-1) === '.') {
-            sum.pop();
-        }
-        sum= sum.join('');
+        sum = sum.toString();
+        sum = +sum;
         sumScreen.textContent = sum;
      }
 
@@ -137,7 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     buttonEqual.addEventListener('click',() => {
         if(sumScreen.textContent !== operationScreen.textContent
-            && operatorsArray.some(element => operationScreen.textContent.includes(element))) {
+            && operatorsArray.some(element => operationScreen.textContent.includes(element))
+            && operatorsArray.every(element => operationScreen.textContent.at(-1) !== element)) {
             let operator = '+'; 
             operatorsArray.forEach(element => {
                 if(operationScreen.textContent.indexOf(element, 1) !== -1 ) {

@@ -19,8 +19,8 @@ const buttonAdd = document.querySelector('#button-add');
 const buttonSubstract = document.querySelector('#button-substract');
 const buttonMultiply = document.querySelector('#button-multiply');
 const buttonDivide = document.querySelector('#button-divide');
-let conditionArray = ['+', '-', 'x', '/', '.'];
-let operatorsArray = ['+', '-', 'x', '/' ];
+let conditionArray = ['+', 'x', '/', '-', '.'];
+let operatorsArray = ['+', 'x', '/','-' ];
 
 document.addEventListener('DOMContentLoaded', () => {
     button1.addEventListener('click', () => {
@@ -88,37 +88,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     buttonAdd.addEventListener('click', () => {
-        operationFunc('+');
+        if(operatorsArray.every(element => operationScreen.textContent.at(-1) !== element)){
+            operationFunc('+');
+        }
+        
     });
 
 
     buttonSubstract.addEventListener('click', () => {
-        if( operatorsArray.some(element => operationScreen.textContent.slice(-2,-1).includes(element))) {
-            let foundedElement = operatorsArray.find(element => operationScreen.textContent.slice(-2,-1).includes(element))
-            getSum(foundedElement);
-            operationScreen.textContent = sumScreen.textContent + '-';
-        } else if(operationScreen.textContent.at(-1) !== '+' 
-                && operationScreen.textContent.at(-1) !== '-'
-                && operationScreen.textContent.at(-1) !== '.') {
+       
+            if( operatorsArray.some(element => operationScreen.textContent.slice(0,-1).includes(element))) {
+                let foundedElement = operatorsArray.find(element => operationScreen.textContent.slice(0,-1).includes(element))
+                getSum(foundedElement);
+                operationScreen.textContent = sumScreen.textContent + '-';
+            } else if(operationScreen.textContent.at(-1) !== '+' 
+                    && operationScreen.textContent.at(-1) !== '-'
+                    && operationScreen.textContent.at(-1) !== '.') {
 
-            operationScreen.textContent += '-';
+                operationScreen.textContent += '-';
 
-        }else if(operationScreen.textContent.at(-1) === '+' 
-                || operationScreen.textContent.at(-1) === '-') {
+            }else if(operationScreen.textContent.at(-1) === '+' 
+                    || operationScreen.textContent.at(-1) === '-') {
 
-                 operationScreen.textContent = operationScreen.textContent.slice(0,-1) + '-';
+                     operationScreen.textContent = operationScreen.textContent.slice(0,-1) + '-';
         };
         
         
     });
 
     buttonMultiply.addEventListener('click', () => {
-        operationFunc('x');
+        if(operatorsArray.every(element => operationScreen.textContent.at(-1) !== element)){
+            operationFunc('x');
+        }
     });
 
 
     buttonDivide.addEventListener('click', () => {
-        operationFunc('/');
+        if(operatorsArray.every(element => operationScreen.textContent.at(-1) !== element)){
+            operationFunc('/');
+        }
     });
 
 

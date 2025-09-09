@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login_Page</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header class="header">
+        <section class="heading-section">
+            <img src="./odin-lined.png" alt="" class="heading-img">
+            <h1 class="page-header">Odin</h1>
+        </section>
+        <p class="author">Photo by <a href="#" class="author-name">Halie West</a> on <a href="#" class="site">Unsplash</a>
+        </p>
+
+    </header>
+    <main class="main">
+        <p class="description">This is not a real online service!You know you need something like this in your life to help you realize your deepest dreams.Sign up <i>now</i> to get started.</p>
+        <p class="description">You know you want to.</p>
+        <section class="form-section">
+            <form class="signup-form" action="/login" method="POST">
+                <div class="form-container">
+                    <h2 class="form-header">Lets do this!</h2>
+                    <div class="input-container">
+                        <div>
+                            <label for="FirstName">First Name</label>
+                            <input type="text" name="FirstName" id="FirstName" required>
+                        </div>
+                        <div>
+                            <label for="SecondName">Second Name</label>
+                            <input type="text" name="SecondName" id="SecondName" required>
+                        </div>
+                        <div>
+                            <label for="email">EMAIL</label>
+                            <input type="email" name="email" id="email">
+                        </div>
+                        <div>
+                            <label for="phone">Phone number</label>
+                            <input type="tel" name="phone" id="phone">
+                        </div>
+                        <div>
+                            <label for="password">password</label>
+                            <input type="password" name="password" id="password" class="password" minlength="8" pattern="(/=.*[A-Z])(?=.*\d){8,}" required>
+                        </div>
+                        <div>
+                            <label for="passwordConfirmation">Confirm password</label>
+                            <input type="password" name="passwordConfirmation" id="passwordConfirmation" class="password" minlength="8" pattern="(/=.*[A-Z])(?=.*\d){8,}" required>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Create Account" class="submit-button">
+            </form>
+        </section>
+        <p class="log-in">Already have an account? <a href="#" class="log-in-link">Log in</a></p>
+    </main>
+</body>
+</html>
